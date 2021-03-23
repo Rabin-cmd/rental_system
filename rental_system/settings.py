@@ -23,11 +23,11 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = '!ap+(m_$w30niaepqnrfhf-%5r_=bp#jw9#0x(7omn(+!ec1m4'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [*]
 
-
+import os
 # Application definition
 
 INSTALLED_APPS = [
@@ -123,3 +123,8 @@ USE_TZ = True
 STATIC_URL = '/static/'
 MEDIA_URL = '/media/'
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
+
+STATICFILES_DIRS = [  
+    os.path.join(BASE_DIR, 'new/static')
+]
