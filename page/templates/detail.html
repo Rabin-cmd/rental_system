@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% block css %}
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+{% endblock css %}
+
+{% block main %}
+
+<div class='bg-white' style="width: 98%; margin-left: 1%;">
+      
+        <p class="text" style="font-size: 30px; margin-left: 15px; margin-top:15px; padding: 0;">{{obj.name}}</p>
+      <div class="row mt-5">
+        <div class="col-md-8" >
+            <img src="{{obj.img.url}}" height="400px" width="100%"/>
+              <h3 class=" text-right ">Price: Rs.{{obj.price}}<i class="material-icons" style="font-size: 40px;"></i></h3>
+        </div>
+        <div class="col-md-4 text-center"> 
+            <p class="text" style="text-align:start;">{{obj.desc}}</p>
+            {% if obj.reg_agent.id == user.id %}
+            <a href="{% url 'update' obj.id %}" class="btn btn-primary my-2" id="clickbtn2">Edit</a>
+            <a href="{% url 'delete' obj.id %}" class="btn btn-danger my-2" id="clickbtn2">Delete</a><br>
+            {% endif %}
+            <small style="text-align: center;">Created @ {{obj.dt}}</small>
+        </div>
+        
+      </div>
+
+</div>
+
+{% endblock main %} 

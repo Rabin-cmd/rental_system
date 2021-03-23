@@ -1,0 +1,36 @@
+{% load static %}
+
+  <body>
+  <header  style="background-color: rgb(73, 10, 10);">
+    <div class="collapse" id="navbarHeader" style="background-color: rgb(73, 10, 10);">
+      <div class="container"  style="background-color: rgb(73, 10, 10);">
+        <div class="row shadow-sm"  style="background-color: rgb(73, 10, 10);">
+          <div class="col-sm-8 col-md-7 py-4" style="background-color:rgb(99, 11, 11) ">
+            <h4 class="text-white">About</h4>
+            <p class="text-white">Add some information about the album below, the author, or any other background context. Make it a few sentences long so folks can pick up some informative tidbits. Then, link them off to some social networking sites or contact information.</p>
+          </div>
+          <div class="col-sm-4 offset-md-1 py-4" style="background-color: rgb(48, 25, 25);">
+            <h4 class="text-white">Contact</h4>
+            <ul class="list-unstyled">
+              <li><a href="#" class="text-white">Phone: +977-9818365759</a></li>
+              <li><a href="#" class="text-white">Email: brolythelegend20772gmail.com</a></li>
+              <li><a href="#" class="text-white">Address: Bhainsepati, Lalitpur</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="navbar navbar-dark bg-dark shadow-sm">
+      <div class="container d-flex justify-content-between">
+        <a href="{% url 'home' %}" class="navbar-brand d-flex align-items-center">
+        <img src="{% static 'img/h.jpeg' %}" height="35" width="35" class="mr-4 img-fluid img-thumbnail" alt="">
+          <strong>Rental System</strong>
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      </div>
+    </div>
+  </header>
+</body>

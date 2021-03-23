@@ -1,0 +1,154 @@
+
+{% extends 'base.html' %}
+{% block title %}
+  | Home
+{% endblock title %}
+{% block main %}
+
+<style>
+  *{
+  margin: 0;
+  padding: 0;
+}
+body{
+  margin: 0;
+  padding: 0;
+  font-family: 'Times New Roman', Times, serif;
+}
+  .bd-placeholder-img {
+    font-size: 1.125rem;
+    text-anchor: middle;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+  }
+
+  @media (min-width: 600px) {
+    .bd-placeholder-img-lg {
+      font-size: 3.5rem;
+    }
+  }
+  .album{
+    background-color: rgb(81, 28, 131);
+    margin: 0%;
+    padding: 0%;
+  }
+.row{
+    margin: 0;
+    padding-right: 6px;
+    background-color: rgb(81, 28, 131);
+    padding-left: 7px;
+
+}
+.col{
+  margin: 0;
+  padding:0;
+  padding-bottom: 9px;
+}
+.card{
+  margin:0%;
+  padding: 0%;
+  margin-right: 6px;
+  border: 0px;
+  height: 346px;
+}
+.card-body{
+  margin:0%;
+  padding: 0%;
+}
+
+.btn{
+  margin-left: 5px;
+}
+.auth_p{
+  margin-top: 30px;
+   font-size: 3vh;
+}
+@media only screen and (max-width:600px){
+  .auth_p{
+    margin-top: 82px;
+  }
+}
+@media only screen and (max-width: 600px) {
+ .jumbotron{
+  width: 100%;
+  height: 360px;
+ }
+}
+</style>
+<main role="main" id="main">
+
+
+  <section class="jumbotron text-center">
+    <p class="auth_p" >
+        {% if user.is_authenticated %}
+          <a href="logout" class="btn btn-danger  btn-lg" alert id="clickbtn">Logout</a>
+          <a href="create" class="btn btn-success btn-lg" alert id="clickbtn">Add Item</a>
+        {%  else %}
+        <a href="login" class="btn btn-success btn-lg" id="clickbtn2">Login</a>
+        <a href="register" class="btn btn-primary btn-lg " id="clickbtn">Register</a>
+        {% endif %}
+        <br>
+        Welcome, {{user}}
+      </p>
+  </section>
+
+
+
+  <div class="album py-5">
+      <div class="row row-cols-2 g-3 row-cols-md-5 ">
+        {% for obj in obj %}  
+        <div class="col">
+          <div class="card g-4">
+            <img src="{{obj.img.url}}" class="bd-placeholder-img card-img-top" width="100%" height="210"  role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false">
+          <div class="card-body">
+              <h5 class="card-title-white  text-center" style="background-color: rgb(59, 20, 95); color: #fff;">{{obj.name}}</h5>
+              <p class="card-text " style="  margin:0%;
+              padding: 0%;
+              font-size: 18px;">{{obj.desc|truncatechars:30}}</p>
+              <!-- <p class="card-text-white bg-success text-right">Price: {{obj.price}} $</p> -->
+              <div class="d-flex justify-content-between align-items-center">
+                <div class="btn-group">
+                  <a href="{% url 'detail' obj.id %}" class="btn btn-primary my-2 btn-sm mr-1" id="clickbtn2">View</a>
+                  {% comment %} <button href="detail" type="button" class="btn btn-sm btn-primary">View</button> {% endcomment %}
+                  {% if obj.reg_agent.id == user.id %}
+                    <a href="{% url 'update' obj.id %}" class="btn btn-secondary my-2 btn-sm mr-1" id="clickbtn2">Edit</a>
+                    <a href="{% url 'delete' obj.id %}" class="btn btn-danger my-2 btn-sm mr-1" id="clickbtn2">Delete</a>
+                  {% endif %} 
+                </div>
+              </div><p class="text-right" style="font-size: 11px;">{{obj.dt}}</p>
+            </div> 
+          </div>
+        </div>
+        {% empty %}
+        <div class="text-center">
+          <p>No items Available</p>  
+        </div>        
+        {% endfor %}
+      </div>
+  </div>
+
+  {% if is_paginated %}
+  <ul class="pagination justify-content-center" style="font-size: 25px;background-color: rgb(81, 28, 131); color: #fff;">
+    {% if page_obj.has_previous %}
+      <li><a href="?page={{ page_obj.previous_page_number }}" class="text-white">&laquo; </a></li>
+    {% else %}
+      <li class="disabled"><span>&laquo;</span></li>
+    {% endif %}
+    {% for i in paginator.page_range %}
+      {% if page_obj.number == i %}
+      &nbsp;<li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>&nbsp;
+      {% else %}
+        <li><a href="?page={{ i }}" class="text-white">{{ i }}</a></li>&nbsp;
+      {% endif %}
+    {% endfor %}
+    {% if page_obj.has_next %}
+      <li><a href="?page={{ page_obj.next_page_number }}" class="text-white">&raquo;</a></li>
+    {% else %}
+      <li class="disabled"><span>&raquo;</span></li>
+    {% endif %}
+  </ul>
+{% endif %}
+ 
+</main>
+{% endblock main %}

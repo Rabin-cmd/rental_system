@@ -1,0 +1,13 @@
+
+{% extends 'base.html' %}
+  {% comment %} {% block css %}
+
+  {% endblock css %} {% endcomment %}
+{% block main %}
+<div class='container mt-3 mr-5 bg-light'>
+<form method="post">{% csrf_token %}
+    <p>Are you sure you want to delete "{{ object }}"?</p>
+    <input type="submit" value="Confirm">
+</form>
+</div>  
+{% endblock main %} 

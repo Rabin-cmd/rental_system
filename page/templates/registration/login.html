@@ -1,0 +1,51 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="generator" content="Jekyll v3.8.6">
+    <title>LOGIN</title>
+
+    <link rel ="stylesheet" href="{% static 'css/floating-labels.css' %}" >
+
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}" >
+    
+  </head>
+  <body>
+
+    <form class="form-signin" method="POST">
+      {% csrf_token %}
+  <div class="text-center mb-4">
+    {% include 'components/_alerts.html' %}
+    <a href="/" type="button" class="btn btn-success btn-sm float-right">Home</a>
+
+    <img src="{% static 'img/log.jpg' %}" class="rounded mx-auto d-block" alt="..." width="20%" height="100%">
+    <!-- <img class="mb-4 mx-auto d-block"  alt="" > -->
+    <h1 class="h3 mb-3 font-weight-normal">Log In</h1>
+    <p>Access your account</p>
+  </div>
+
+  <div class="form-label-group">
+    <input type="text"  name='username' class="form-control" placeholder="User Name" required autofocus>
+    <label for="inputEmail">User Name</label>
+  </div>
+
+  <div class="form-label-group">
+    <input type="password" name='password' id="inputPassword" class="form-control" placeholder="Password" required>
+    <label for="inputPassword">Password</label>
+  </div>
+
+  <div class="checkbox mb-2">
+    <label>
+      <input type="checkbox" value="remember-me"> Remember me
+    </label>
+  </div>
+  <button class="btn btn-lg btn-success btn-block" type="submit">log In</button>
+  <p class="mt-5 mb-3 text-muted text-center">&copy; 2020 TechAxis</p>
+</form>
+</body>
+</html>
